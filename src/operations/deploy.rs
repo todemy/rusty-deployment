@@ -38,11 +38,11 @@ fn retrieve_config<P: AsRef<Path>>(path: P) -> Result<Box<DeployConfig>, Box<Err
 
 
 fn run_individual_step(step: &Step) -> Output {
-    let mut commnad_process = Command::new(&step.command);
+    let mut command_process = Command::new(&step.command);
 
     match step.relative_dir {
         Some(ref dir) => {
-            commnad_process.current_dir(dir);
+            command_process.current_dir(dir);
         },
         _ => {}
     };
@@ -50,13 +50,13 @@ fn run_individual_step(step: &Step) -> Output {
     match step.args {
         Some(ref args) => {
             for arg in args.iter() {
-                commnad_process.arg(arg);
+                command_process.arg(arg);
             }
         },
         _ => {}
     };
 
-    commnad_process.output().expect("failed to run command")
+    command_process.output().expect("failed to run command")
 }
 
 
@@ -77,11 +77,11 @@ fn deploy(config: String) {
                     println!("Failed to run step: {} : {}", step.name, String::from_utf8_lossy(&output.stderr));
                 }
             }))
-        }
+        };
 
         for thread in step_threads {
             let _ = thread.join().unwrap();
-        }
+        };
 
         println!("\n\nCompleted section: {}\n\n", section.name);
     }
