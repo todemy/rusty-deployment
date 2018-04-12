@@ -1,16 +1,17 @@
-rm -rf /tmp/dk-brew-build
-mkdir /tmp/dk-brew-build
+rm -rf /tmp/tody-cli-brew-build
+rm -rf /tmp/tody-cli-brew-build-tar
+mkdir /tmp/tody-cli-brew-build-tar
+mkdir /tmp/tody-cli-brew-build
 cargo build --release
-cp ./target/release/dk /tmp/dk-brew-build
-cp ./config.json /tmp/dk-brew-build
-cp ./homebrew/configure /tmp/dk-brew-build
-
-cd /tmp/dk-brew-build
+cp ./target/release/tody /tmp/tody-cli-brew-build
+# cp ./config.json /tmp/tody-cli-brew-build
+cp ./homebrew/configure /tmp/tody-cli-brew-build
 
 
 # Change version number . . .
-tar -cvzf dk-0.0.1.tar.gz .
+(cd /tmp/tody-cli-brew-build && tar -cvzf /tmp/tody-cli-brew-build-tar/tody-0.0.1.tar.gz .)
 
-shasum -a 256 dk-0.0.1.tar.gz
+echo "Your shasum mate:\n"
+shasum -a 256 /tmp/tody-cli-brew-build-tar/tody-0.0.1.tar.gz
 
-cp dk-0.0.1.tar.gz homebrew/Release
+cp -P /tmp/tody-cli-brew-build-tar/tody-0.0.1.tar.gz ./homebrew/Release/

@@ -10,6 +10,7 @@ use std::thread;
 
 #[derive(Debug, Deserialize, Clone)]
 struct Step {
+    relative_dir: Option<String>,
     name: String,
     command: String,
     args: Option<Vec<String>>
@@ -38,6 +39,14 @@ fn retrieve_config<P: AsRef<Path>>(path: P) -> Result<Box<DeployConfig>, Box<Err
 
 fn run_individual_step(step: &Step) -> Output {
     let mut commnad_process = Command::new(&step.command);
+
+    match step.relative_dir {
+        Some(ref dir) => {
+            commnad_process.current_dir(dir);
+        },
+        _ => {}
+    };
+
     match step.args {
         Some(ref args) => {
             for arg in args.iter() {
@@ -63,6 +72,7 @@ fn deploy(config: String) {
                 let output = run_individual_step(&step);
                 if output.status.success() {
                     println!("Completed step {}", step.name);
+                    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
                 } else {
                     println!("Failed to run step: {} : {}", step.name, String::from_utf8_lossy(&output.stderr));
                 }
@@ -76,7 +86,7 @@ fn deploy(config: String) {
         println!("\n\nCompleted section: {}\n\n", section.name);
     }
 
-    println!("\n\n\nDone.")
+    println!("\nDone.")
 }
 
 pub fn deploy_all(environments: clap::Values) {

@@ -14,5 +14,6 @@ Cargo.lock
 /target/
 **/*.rs.bk
 
+*.DS_store
 
 .tody-deploy-config-prod.json

@@ -4,6 +4,7 @@
             "name": "section 1",
             "steps": [
                 {
+                    "relative_dir": "./src",
                     "name": "step 1",
                     "command": "ls",
                     "args": ["-l", "-a", "-h"]
@@ -15,8 +16,8 @@
             "steps": [
                 {
                     "name": "some other step",
-                    "command": "ls && git status",
-                    "args": []
+                    "command": "git",
+                    "args": ["status"]
                 }
             ]
         }

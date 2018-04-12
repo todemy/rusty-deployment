@@ -9,7 +9,7 @@ mod operations;
 
 fn main() {
 
-    let matches = clap::App::new("Deploy-kite cli")
+    let matches = clap::App::new("tody cli")
 		.version("0.1.0")
 		.author("Arnold Agus")
 		.about("tody cli tool")
