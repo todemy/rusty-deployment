@@ -1,0 +1,25 @@
+{
+    "sections": [
+        {
+            "name": "section 1",
+            "steps": [
+                {
+                    "relative_dir": "./src",
+                    "name": "step 1",
+                    "command": "ls",
+                    "args": ["-l", "-a", "-h"]
+                }
+            ]
+        },
+        {
+            "name": "section 2",
+            "steps": [
+                {
+                    "name": "some other step",
+                    "command": "git",
+                    "args": ["status"]
+                }
+            ]
+        }
+    ]
+}
