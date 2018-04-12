@@ -16,4 +16,4 @@ Cargo.lock
 
 *.DS_store
 
-.tody-deploy-config-prod.json
+tody-deploy-config-prod.json
