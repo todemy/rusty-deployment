@@ -96,6 +96,9 @@ pub fn deploy_all(environments: clap::Values) {
             "PROD" => {
                 deploy(String::from("tody-deploy-config-prod.json"))
             },
+            "DEV" => {
+                deploy(String::from("tody-deploy-config-dev.json"))
+            },
             _ => println!("Unable to deploy environment provided: {}", environment.to_string())
         };
     }

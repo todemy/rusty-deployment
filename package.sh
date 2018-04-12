@@ -9,9 +9,9 @@ cp ./homebrew/configure /tmp/tody-cli-brew-build
 
 
 # Change version number . . .
-(cd /tmp/tody-cli-brew-build && tar -cvzf /tmp/tody-cli-brew-build-tar/tody-0.0.1.tar.gz .)
+(cd /tmp/tody-cli-brew-build && tar -cvzf /tmp/tody-cli-brew-build-tar/tody-0.1.0.tar.gz .)
 
 echo "Your shasum mate:\n"
-shasum -a 256 /tmp/tody-cli-brew-build-tar/tody-0.0.1.tar.gz
+shasum -a 256 /tmp/tody-cli-brew-build-tar/tody-0.1.0.tar.gz
 
-cp -P /tmp/tody-cli-brew-build-tar/tody-0.0.1.tar.gz ./homebrew/Release/
+cp -P /tmp/tody-cli-brew-build-tar/tody-0.1.0.tar.gz ./homebrew/Release/
